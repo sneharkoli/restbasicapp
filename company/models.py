@@ -6,11 +6,11 @@ custom = RegexValidator(r'^[a-zA-Z]{2}[0-9]{2}[E|N]$', 'Length should be 5 chara
 
 
 class Company(models.Model):
-    company_name = models.CharField(max_length = 120, validators=[MinLengthValidator(5)], blank=False, null=False)
-    email_id = models.EmailField(blank=False, null=False)
+    company_name = models.CharField(max_length = 120, validators=[MinLengthValidator(5)], blank=False, null=False, unique=True)
+    email_id = models.EmailField(blank=False, null=False, unique=True)
     company_code = models.CharField(max_length=5, unique=True, blank=True, validators=[custom])
     strength = models.PositiveIntegerField(null=True)
-    strength = models.URLField(max_length=1200, null=True)
+    website = models.URLField(max_length=1200, null=True)
     created_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
